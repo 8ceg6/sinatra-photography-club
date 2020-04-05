@@ -1,0 +1,3 @@
+class CamerasController < ApplicationController
+
+end 

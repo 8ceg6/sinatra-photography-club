@@ -1,0 +1,3 @@
+class LensesController < ApplicationController
+
+end 
