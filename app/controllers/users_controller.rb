@@ -2,10 +2,19 @@ class UsersController < ApplicationController
 
 
     get "/signup" do 
-        erb:'users/signup'
+        if  is_logged_in?
+            # user = current_user(session)
+            redirect to "/login"
+        else
+        erb :'users/signup'
+        end 
     end
 
     get '/login' do 
+        if  is_logged_in?
+            user = current_user
+            redirect to "/users/#{user.id}"
+        end
         erb :"users/login"
     end 
 
@@ -20,6 +29,7 @@ class UsersController < ApplicationController
     end 
 
     post '/signup' do 
+        
         user = User.create(params)
         if user.valid?
         session[:user_id] = user.id
@@ -37,4 +47,6 @@ class UsersController < ApplicationController
             redirect to '/'
         end
     end 
+
+    
 end 
