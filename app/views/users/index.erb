@@ -1,0 +1,8 @@
+<h2>Members</h2>
+
+<% @users.each do |user|%>
+
+<p> <a href="/users/<%=user.id%>">Name: <%= user.username.capitalize%> <br><br>
+    Style: <%= user.photography_style.capitalize%> </a>
+</p>
+<%end%>
