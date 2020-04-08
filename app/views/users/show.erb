@@ -1,4 +1,4 @@
-<html></html>
+<html>
 <h2><%= @user.username%>'s Photagraphy Vault</h2><br>
 <h3><%= @user.photography_style.capitalize %> photography is my favorite </h3>
 <br>
@@ -6,7 +6,7 @@
 <h3>Cameras</h3><br>
 <ul>
    <% @cameras.each do |camera|%>
-    <li><a href="/cameras/<%=camera.id%>"><%=camera.brand%>-<%=camera.model%>  </a></li><br>
+    <li><a href="/cameras/<%=camera.id%>"><%=camera.brand.capitalize%>-<%=camera.model%>  </a></li><br>
     
 
     <%end %>

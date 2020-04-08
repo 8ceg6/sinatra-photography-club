@@ -16,4 +16,9 @@ class CamerasController < ApplicationController
         
         redirect to "/users/#{user.id}"
     end 
+
+    get '/cameras/:id' do 
+        @camera = Camera.find_by_id(params[:id])
+        erb :'cameras/show'
+    end 
 end 
