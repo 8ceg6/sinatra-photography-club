@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 
     get "/signup" do 
-        if  is_logged_in?
+        if  Helpers.is_logged_in?(session)
             user = current_user
             redirect to "/login"
         else
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     end
 
     get '/login' do 
-        if  is_logged_in?
+        if  Helpers.is_logged_in?(session)
             user = current_user
             redirect to "/users/#{user.id}"
         end
@@ -40,27 +40,31 @@ class UsersController < ApplicationController
     end 
 
     get '/users/:id' do 
-        if User.find_by_id(params[:id])
+        if Helpers.is_logged_in?(session) && User.find_by_id(params[:id])
             @user = User.find_by_id(params[:id])
-            erb :'users/show'
+            @cameras = @user.cameras
+            # binding.pry
         else  
             redirect to '/'
-        end
+        end 
+        erb :'users/show'
     end 
 
     get '/users' do 
-        @users = User.all
-        erb :'users/index'
+        if Helpers.is_logged_in?(session)
+            @users = User.all
+            erb :'users/index'
+        else
+            redirect to '/'
+        end 
     end 
 
     get '/logout' do 
-        if  is_logged_in?
+        if  Helpers.is_logged_in?(session)
             session.clear
             redirect to '/login'
         else 
             redirect to '/'
         end
     end 
-
-    
 end 

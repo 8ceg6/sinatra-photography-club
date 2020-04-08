@@ -4,7 +4,13 @@
 <br>
 
 <h3>Cameras</h3><br>
-<h3></h3>
+<ul>
+   <% @cameras.each do |camera|%>
+    <li><a href="/cameras/<%=camera.id%>"><%=camera.brand%>-<%=camera.model%>  </a></li><br>
+    
+
+    <%end %>
+</ul> 
 
 
 <h3>Lenses</h3>

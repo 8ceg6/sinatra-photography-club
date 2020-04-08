@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200405221913) do
+ActiveRecord::Schema.define(version: 20200408015149) do
 
   create_table "cameras", force: :cascade do |t|
     t.string  "brand"
     t.string  "model"
-    t.integer "users_id"
+    t.integer "user_id"
   end
 
   create_table "lenses", force: :cascade do |t|
     t.string  "type"
     t.string  "focal_length"
-    t.integer "cameras_id"
+    t.integer "camera_id"
   end
 
   create_table "users", force: :cascade do |t|
