@@ -1,0 +1,12 @@
+<form action="/cameras/<%= "#{@camera.id}" %>" method="post"/ >
+	 
+    <input id="hidden" type="hidden" name="_method" value="patch"/>
+
+	<label>Current Camera: <%= @camera.brand.capitalize %>-<%=@camera.model%> </label>
+	<%# <input type="text" > </input> %>
+
+	<%# <a href="/tweets/:id"><button id="submit">submit</button></a> %>
+    <input type="submit" value="Remove" id='submit'/>
+
+
+</form>

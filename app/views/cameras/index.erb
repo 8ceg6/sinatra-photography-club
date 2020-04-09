@@ -1,0 +1,9 @@
+<h3> All Camera Types Used By Our Members </h3>
+
+    <%# <% @cameras.sort_by do |camera| %> %>
+     
+    <ul>
+    <% @cameras.sort_by do |camera|%>
+    <li><a href="/cameras/<%=camera.id%>"><%=camera.brand.capitalize%>-<%=camera.model%>  </a></li><br>
+    <%# <%binding.pry%> %>
+    <%end%> </ul>
