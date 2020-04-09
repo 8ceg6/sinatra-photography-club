@@ -2,11 +2,13 @@
 	 
     <input id="hidden" type="hidden" name="_method" value="patch"/>
 
-	<label>Current Camera: <%= @camera.brand.capitalize %>-<%=@camera.model%> </label>
-	<%# <input type="text" > </input> %>
-
-	<%# <a href="/tweets/:id"><button id="submit">submit</button></a> %>
-    <input type="submit" value="Remove" id='submit'/>
-
-
+	<label> Camera <%= @camera.id%> <br> 
+    <%= @camera.brand.capitalize %>  </label>
+	<input type="text" > </input>
+    <%# <a href="/tweets/:id"><button id="submit">submit</button></a> %>
+    <input type="submit" value="Update" id='submit'/><br>
+    <label> Model <%=@camera.model%> </label>
+    <input type="text" > </input>
+    <input type="submit"  value="update" onclick="check()"> 
+    <%# <input type="button" value="Update" onclick="Compare()"/> %>
 </form>

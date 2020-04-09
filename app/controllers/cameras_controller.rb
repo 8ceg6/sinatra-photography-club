@@ -43,4 +43,15 @@ class CamerasController < ApplicationController
           erb :'/cameras/edit'
         # end
       end
+
+      patch '/cameras/:id' do
+        @camera = Camera.find(params[:id])
+        # if params[:brand].empty?
+          redirect to "/cameras/#{@camera.id}/edit"
+        # end
+        @camera.update(:brand => params[:brand])
+        @camera.save
+    
+        redirect to "/cameras/#{@camera.id}"
+      end
 end 
