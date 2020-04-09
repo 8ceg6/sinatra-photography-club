@@ -43,7 +43,7 @@ class UsersController < ApplicationController
         if Helpers.is_logged_in?(session) && User.find_by_id(params[:id])
             @user = User.find_by_id(params[:id])
             @cameras = @user.cameras
-            # binding.pry
+            
         else  
             redirect to '/'
         end 
@@ -67,4 +67,9 @@ class UsersController < ApplicationController
             redirect to '/'
         end
     end 
+    delete '/users/:id/delete' do 
+        user = User.find_by_id(params[:id])
+        user.delete
+        redirect to '/users'
+      end
 end 

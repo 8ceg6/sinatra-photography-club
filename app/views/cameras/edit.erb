@@ -6,7 +6,7 @@
 
     <label> Brand <%=@camera.brand.capitalize%>  </label>
 	<input type="text" name="camera[brand]" value="<%=@camera.brand%> "> 
-    <%# <a href="/tweets/:id"><button id="submit">submit</button></a> %>
+
     <input type="submit" value="Update" /><br>
     </form>
     
@@ -17,7 +17,9 @@
     <label> Model <%=@camera.model.capitalize%> </label>
     <input type="text" name="camera[model]" value="<%=@camera.model%>"> 
     <input type="submit"  value="Update" /> 
-    <%# <input type="button" value="Update" onclick="Compare()"/> %>
+    
 </form>
-
-<form action=""></form>
+<%# <%binding.pry%> %>
+<form action="/users/<%=@camera.user.id%>">
+        <input type="submit" value="Return to my cameras">
+</form>

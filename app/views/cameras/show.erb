@@ -1,4 +1,9 @@
 
-<h2><%= @camera.brand.capitalize%> - <%= @camera.model%></h2><br><br>
+<h2><%= @camera.brand.capitalize%> - <%= @camera.model%></h2>
+<p>Lenses</p><br><br>
 
-<p> </p>
+<a href="/cameras/<%=@camera.id%>/edit "> Update Camera</a><br><br>
+<form action="/cameras/<%=@camera.id%> /delete" method="POST">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value= "Delete">
+</form>
