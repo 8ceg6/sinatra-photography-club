@@ -1,23 +1,23 @@
 <html>
-<h2><%= @user.username%>'s Photagraphy Vault</h2><br>
-<h3><%= @user.photography_style.capitalize %> photography is my favorite </h3>
-<br>
+<h2><%= @user.username.titleize%>'s Photagraphy Equipment Vault</h2><br>
 
-<h3>Cameras</h3><br>
+<h4>Cameras</h4><br>
 <ul>
    <% @cameras.each do |camera|%>
-    <li><a href="/cameras/<%=camera.id%>"><%=camera.brand.capitalize%>-<%=camera.model%>  </a></li><br>
+    <li><a href="/cameras/<%=camera.id%>"><%=camera.brand.capitalize%>-<%=camera.model.capitalize%>  </a></li><br>
     <%end %>
 </ul> 
 
 
 <h3>Lenses</h3>
-    <%# <%binding.pry%>
+    
  
-<p><a href="/cameras/new">Add Camera</a></p>
+<h6><a href="/cameras/new">Add Camera</a></h6>
+
+<h6><a href="/logout">Logout</a></h6> 
+</html>
+
 <form action="/users/<%=@user.id%> /delete" method="POST">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" value= "Delete Account">
 </form>
-<h6><a href="/logout">Logout</a></h6> 
-</html>
