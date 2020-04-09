@@ -1,21 +1,21 @@
 class CamerasController < ApplicationController
-
+    get '/cameras' do 
+            @cameras = Camera.all  
+            @users = User.all
+            erb :'cameras/index'
+        end
 
     get '/cameras/new' do 
         erb :'cameras/new'
     end 
 
-    get '/cameras' do 
-        @cameras = Camera.all  
-        @users = User.all
-        erb :'cameras/index'
-    end
+    
     post '/cameras' do 
-        camera = Camera.create(params)
+        @camera = Camera.create(params)
         user = Helpers.current_user(session)
         # binding.pry
-        camera.user = user
-        camera.save
+        @camera.user = user
+        @camera.save
         
         redirect to "/users/#{user.id}"
     end 
@@ -30,10 +30,11 @@ class CamerasController < ApplicationController
     end 
     
     get '/cameras/:id/edit' do
-        # if !is_logged_in?
-        # redirect to '/login' 
-        # end
-        @camera = Camera.find_by(params[:id])
+        @camera = Camera.find_by_id(params[:id])
+        if !Helpers.is_logged_in?(session) || !@camera || @camera.user != Helpers.current_user(session)
+        redirect to '/cameras' 
+        end
+        
         #  binding.pry
         # if @tweet.user_id == !current_user.id
             
@@ -44,14 +45,14 @@ class CamerasController < ApplicationController
         # end
       end
 
-      patch '/cameras/:id' do
-        @camera = Camera.find(params[:id])
-        # if params[:brand].empty?
-          redirect to "/cameras/#{@camera.id}/edit"
-        # end
-        @camera.update(:brand => params[:brand])
-        @camera.save
-    
-        redirect to "/cameras/#{@camera.id}"
+      patch '/cameras/:id/edit' do
+        @camera = Camera.find_by_id(params[:id])
+        # binding.pry
+        
+        
+        @camera.update(params[:camera])
+        # @camera.save
+        # binding.pry
+        redirect to "/cameras/#{@camera.id}/edit"
       end
 end 

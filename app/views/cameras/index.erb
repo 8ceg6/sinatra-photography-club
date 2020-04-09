@@ -4,6 +4,6 @@
      
     <ul>
     <% @cameras.sort_by do |camera|%>
-    <li><a href="/cameras/<%=camera.id%>"><%=camera.brand.capitalize%>-<%=camera.model%>  </a></li><br>
-    <%# <%binding.pry%> %>
+    <li><a href="/cameras/<%=camera.id%>"><%=camera.brand.capitalize%> - <%=camera.model.capitalize%>  </a></li><br>
+    
     <%end%> </ul>

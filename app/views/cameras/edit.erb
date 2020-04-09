@@ -1,14 +1,23 @@
-<form action="/cameras/<%= "#{@camera.id}" %>" method="post"/ >
+<form action="/cameras/<%= @camera.id %>/edit" method="post" >
 	 
-    <input id="hidden" type="hidden" name="_method" value="patch"/>
+    <input  type="hidden" name="_method" value="patch"/>
 
-	<label> Camera <%= @camera.id%> <br> 
-    <%= @camera.brand.capitalize %>  </label>
-	<input type="text" > </input>
+	<h2>CAMERA</h2> <br>
+
+    <label> Brand <%=@camera.brand.capitalize%>  </label>
+	<input type="text" name="camera[brand]" value="<%=@camera.brand%> "> 
     <%# <a href="/tweets/:id"><button id="submit">submit</button></a> %>
-    <input type="submit" value="Update" id='submit'/><br>
-    <label> Model <%=@camera.model%> </label>
-    <input type="text" > </input>
-    <input type="submit"  value="update" onclick="check()"> 
+    <input type="submit" value="Update" /><br>
+    </form>
+    
+    <form action="/cameras/<%=@camera.id %>/edit" method="post" >
+	 
+    <input  type="hidden" name="_method" value="patch"/>
+
+    <label> Model <%=@camera.model.capitalize%> </label>
+    <input type="text" name="camera[model]" value="<%=@camera.model%>"> 
+    <input type="submit"  value="Update" /> 
     <%# <input type="button" value="Update" onclick="Compare()"/> %>
 </form>
+
+<form action=""></form>

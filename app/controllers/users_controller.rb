@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
     get '/login' do 
         if  Helpers.is_logged_in?(session)
-            user = current_user
+            user = Helpers.current_user(session)
             redirect to "/users/#{user.id}"
         end
         erb :"users/login"
