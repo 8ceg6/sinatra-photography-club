@@ -30,16 +30,14 @@ class CamerasController < ApplicationController
     end 
     
     get '/cameras/:id/edit' do
-        @user = User.find_by_id(params[:id])
         @camera = Camera.find_by_id(params[:id])
+        @user = @camera.user
+        
         if !Helpers.is_logged_in?(session) || !@camera || @camera.user != Helpers.current_user(session)
         redirect to '/cameras' 
+        else
+            erb :'/cameras/edit'
         end
-        
-    
-        
-          erb :'/cameras/edit'
-        # end
       end
 
       patch '/cameras/:id/edit' do
@@ -51,7 +49,6 @@ class CamerasController < ApplicationController
       delete '/cameras/:id/delete' do 
         user = User.find_by_id(params[:id])
         camera = Camera.find_by_id(params[:id])
-        # binding.pry
         camera.delete
         redirect to "/users/#{camera.user.id}"
       end

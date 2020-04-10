@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     post '/login' do 
             user = User.find_by(username: params[:username])
             if user && user.authenticate(params[:password])
-                session[:user_id] = user.id 
+               session[:user_id] = user.id 
                 redirect to "/users/#{user.id}"
             else 
                 redirect to '/'
@@ -43,7 +43,6 @@ class UsersController < ApplicationController
         if Helpers.is_logged_in?(session) && User.find_by_id(params[:id])
             @user = User.find_by_id(params[:id])
             @cameras = @user.cameras
-            
         else  
             redirect to '/'
         end 
