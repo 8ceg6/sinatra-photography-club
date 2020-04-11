@@ -5,23 +5,22 @@ class CamerasController < ApplicationController
             erb :'cameras/index'
         end
 
+    post '/cameras' do 
+        @camera = Camera.create(params[:camera])
+        user = Helpers.current_user(session)
+        @camera.user = user
+        @camera.save
+        redirect to "/users/#{user.id}"
+    end 
+    
     get '/cameras/new' do 
         erb :'cameras/new'
     end 
 
     
-    post '/cameras' do 
-        @camera = Camera.create(params)
-        user = Helpers.current_user(session)
-        # binding.pry
-        @camera.user = user
-        @camera.save
-        
-        redirect to "/users/#{user.id}"
-    end 
-
     get '/cameras/:id' do 
         @camera = Camera.find_by_id(params[:id])
+       
         if !@camera
         redirect to '/cameras'
         else
@@ -32,9 +31,8 @@ class CamerasController < ApplicationController
     get '/cameras/:id/edit' do
         @camera = Camera.find_by_id(params[:id])
         @user = @camera.user
-        
         if !Helpers.is_logged_in?(session) || !@camera || @camera.user != Helpers.current_user(session)
-        redirect to '/cameras' 
+            redirect to '/cameras' 
         else
             erb :'/cameras/edit'
         end
@@ -42,14 +40,22 @@ class CamerasController < ApplicationController
 
       patch '/cameras/:id/edit' do
         @camera = Camera.find_by_id(params[:id])
-        @camera.update(params[:camera])
-        redirect to "/cameras/#{@camera.id}/edit"
+        if  @camera && recipe.user == Helpers.current_user(session)
+            @camera.update(params[:camera])
+            redirect to "/cameras/#{@camera.id}/edit"
+        else
+            redirect to "/cameras"
+        end
       end
 
       delete '/cameras/:id/delete' do 
         user = User.find_by_id(params[:id])
         camera = Camera.find_by_id(params[:id])
-        camera.delete
-        redirect to "/users/#{camera.user.id}"
+        #  if  camera && camera.user == Helpers.current_user(session).id
+            camera.delete
+            redirect to "/users/#{camera.user.id}"
+        # else 
+            redirect to "/cameras"
+        # end
       end
 end 

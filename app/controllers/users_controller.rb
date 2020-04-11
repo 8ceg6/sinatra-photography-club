@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
     get "/signup" do 
         if  Helpers.is_logged_in?(session)
-            user = current_user
+            user = Helpers.current_user(session)
             redirect to "/login"
         else
         erb :'users/signup'
@@ -39,16 +39,6 @@ class UsersController < ApplicationController
         end 
     end 
 
-    get '/users/:id' do 
-        if Helpers.is_logged_in?(session) && User.find_by_id(params[:id])
-            @user = User.find_by_id(params[:id])
-            @cameras = @user.cameras
-        else  
-            redirect to '/'
-        end 
-        erb :'users/show'
-    end 
-
     get '/users' do 
         if Helpers.is_logged_in?(session)
             @users = User.all
@@ -58,10 +48,38 @@ class UsersController < ApplicationController
         end 
     end 
 
+    get '/users/:id' do 
+        if Helpers.is_logged_in?(session) && User.find_by_id(params[:id])
+            @user = User.find_by_id(params[:id])
+            @cameras = @user.cameras
+            @cam = Camera.find_by_id(params[:id])
+            
+        else  
+            redirect to '/'
+        end 
+        erb :'users/show'
+    end 
+
+    get '/users/:id/edit' do 
+        @user = User.find_by_id(params[:id])
+
+        erb :"users/edit"
+    end 
+
+    patch '/users/:id/edit' do
+        @user = User.find_by_id(params[:id])
+        if  @user  == Helpers.current_user(session)
+            @user.update(params[:user])
+            redirect to "/users/#{@user.id}/edit"
+        else
+            redirect to "/users"
+        end
+      end
+
     get '/logout' do 
         if  Helpers.is_logged_in?(session)
             session.clear
-            redirect to '/login'
+            redirect to '/'
         else 
             redirect to '/'
         end
@@ -69,6 +87,7 @@ class UsersController < ApplicationController
     delete '/users/:id/delete' do 
         user = User.find_by_id(params[:id])
         user.delete
-        redirect to '/users'
+        session.clear
+        redirect to '/'
       end
 end 

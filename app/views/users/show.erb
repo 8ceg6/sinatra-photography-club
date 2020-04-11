@@ -1,5 +1,5 @@
 <html>
-<h2><%= @user.username.titleize%>'s Photagraphy Equipment Vault</h2><br>
+<h1><%= @user.username.titleize%>'s Camera Vault</h1><br>
 
 <h4>Cameras</h4><br>
 <ul>
@@ -8,12 +8,9 @@
     <%end %>
 </ul> 
 
-
-<h3>Lenses</h3>
-    
- 
-<h6><a href="/cameras/new">Add Camera</a></h6>
-
+  <h6><a href="<%=@user.photos%>">My Photos</a></h6>
+  <h6><a href="/cameras/new">Add Camera</a></h6>
+<h6><a href="/users/<%=@user.id%>/edit "> Edit Profile</a></h6>
 <h6><a href="/logout">Logout</a></h6> 
 </html>
 

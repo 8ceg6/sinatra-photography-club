@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200408015149) do
+ActiveRecord::Schema.define(version: 20200410211222) do
 
   create_table "cameras", force: :cascade do |t|
     t.string  "brand"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20200408015149) do
   end
 
   create_table "lenses", force: :cascade do |t|
-    t.string  "type"
+    t.string  "kind"
     t.string  "focal_length"
     t.integer "camera_id"
   end
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20200408015149) do
     t.string "username"
     t.string "password_digest"
     t.string "photography_style"
+    t.string "photos"
   end
 
 end

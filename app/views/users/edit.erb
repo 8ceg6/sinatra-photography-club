@@ -1,0 +1,21 @@
+<form action="/users/<%= @user.id %>/edit" method="post" >
+	 
+    <input  type="hidden" name="_method" value="patch"/>
+
+<h2>Update Info for <%= @user.username.capitalize %> </h2>
+
+<label>Username:</label>
+<input type="text" name="user[username]">
+<input type="submit" value="Update">
+</form><br>
+
+<label>Photography Style:</label>
+<input type="text" name="user[photography_style]">
+<input type="submit" value="Update">
+</form><br><br>
+
+<label>Photos Link:</label>
+<input type="text" name="user[photos]">
+<input type="submit" value="Update">
+</form><br>
+<a href="/users/<%=@user.id%>">Return To My Page</a>
