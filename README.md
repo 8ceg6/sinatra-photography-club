@@ -1,3 +1,11 @@
 
-This is a simple web application for a photography club. The app allows users to sign up with the requirements of having a username, password, photography style, and a link to an outside website where they have photos saved. 
-After signing up the user has the option to create a camera by identifying it with a brand and model of that camera. A user will have the option to add more cameras or edit them as well from there the users camera  show page. Users also can change or update any information as well pertaining to the user. 
+This is a simple web application for a photography club. 
+
+Usage
+To use this app, just clone, run rake db:migrate and then run shotgun. .
+
+License
+The gem is available as open source under the terms of the https://opensource.org/licenses/MIT.
+
+Code of Conduct
+Everyone interacting in the Destinations project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the https://github.com/awilmerding1/awilmerding-cli-app/blob/master/CODE_OF_CONDUCT.md.
