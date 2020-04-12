@@ -20,7 +20,6 @@ class CamerasController < ApplicationController
     
     get '/cameras/:id' do 
         @camera = Camera.find_by_id(params[:id])
-       
         if !@camera
         redirect to '/cameras'
         else
@@ -40,7 +39,7 @@ class CamerasController < ApplicationController
 
       patch '/cameras/:id/edit' do
         @camera = Camera.find_by_id(params[:id])
-        if  @camera && recipe.user == Helpers.current_user(session)
+        if  @camera && @camera.user == Helpers.current_user(session)
             @camera.update(params[:camera])
             redirect to "/cameras/#{@camera.id}/edit"
         else
