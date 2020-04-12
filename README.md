@@ -1,1 +1,3 @@
 
+This is a simple web application for a photography club. The app allows users to sign up with the requirements of having a username, password, photography style, and a link to an outside website where they have photos saved. 
+After signing up the user has the option to create a camera by identifying it with a brand and model of that camera. A user will have the option to add more cameras or edit them as well from there the users camera  show page. Users also can change or update any information as well pertaining to the user. 

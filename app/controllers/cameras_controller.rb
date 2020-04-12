@@ -51,11 +51,11 @@ class CamerasController < ApplicationController
       delete '/cameras/:id/delete' do 
         user = User.find_by_id(params[:id])
         camera = Camera.find_by_id(params[:id])
-        #  if  camera && camera.user == Helpers.current_user(session).id
+         if  camera && camera.user == Helpers.current_user(session).id
             camera.delete
             redirect to "/users/#{camera.user.id}"
-        # else 
+        else 
             redirect to "/cameras"
-        # end
+        end
       end
 end 

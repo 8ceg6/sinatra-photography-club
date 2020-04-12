@@ -86,8 +86,12 @@ class UsersController < ApplicationController
     end 
     delete '/users/:id/delete' do 
         user = User.find_by_id(params[:id])
-        user.delete
-        session.clear
-        redirect to '/'
+        if user == Helpers.current_user(session)
+            user.delete
+            session.clear
+            redirect to '/'
+        else 
+            redirect to '/users'
+        end
       end
 end 
