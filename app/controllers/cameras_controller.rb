@@ -21,9 +21,9 @@ class CamerasController < ApplicationController
     get '/cameras/:id' do 
         @camera = Camera.find_by_id(params[:id])
         if !@camera
-        redirect to '/cameras'
+            redirect to '/cameras'
         else
-        erb :'cameras/show'
+            erb :'cameras/show'
         end
     end 
     

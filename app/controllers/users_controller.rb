@@ -6,7 +6,7 @@ class UsersController < ApplicationController
             user = Helpers.current_user(session)
             redirect to "/login"
         else
-        erb :'users/signup'
+            erb :'users/signup'
         end 
     end
 
@@ -15,13 +15,13 @@ class UsersController < ApplicationController
             user = Helpers.current_user(session)
             redirect to "/users/#{user.id}"
         end
-        erb :"users/login"
+            erb :"users/login"
     end 
 
     post '/login' do 
             user = User.find_by(username: params[:username])
             if user && user.authenticate(params[:password])
-               session[:user_id] = user.id 
+                session[:user_id] = user.id 
                 redirect to "/users/#{user.id}"
             else 
                 redirect to '/'
@@ -32,8 +32,8 @@ class UsersController < ApplicationController
         
         user = User.create(params)
         if user.valid?
-        session[:user_id] = user.id
-        redirect to "/users/#{user.id}"
+            session[:user_id] = user.id
+            redirect to "/users/#{user.id}"
         else
             redirect to "/signup"
         end 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
         else  
             redirect to '/'
         end 
-        erb :'users/show'
+            erb :'users/show'
     end 
 
     get '/users/:id/edit' do 
